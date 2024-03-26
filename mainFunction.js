@@ -47,9 +47,24 @@ function init() {
 
 // 用户点下开始测试的事件
 function start(){
-    for(var i =0;i<getRandom(20)+1;i++){
-        allTestIDList.sort(randomSort)
+    console.log("Before sorting:", allTestIDList);
+    //分成两半随机排序
+    var halfLength = Math.floor(allTestIDList.length / 2);
+    var firstHalf = allTestIDList.slice(0, halfLength);
+    var secondHalf = allTestIDList.slice(halfLength);
+
+    // for(var i =0;i<getRandom(20)+1;i++){
+    //     allTestIDList.sort(randomSort)
+    // }
+    for (var i = 0; i < getRandom(20) + 1; i++) {
+        firstHalf.sort(randomSort);
+        secondHalf.sort(randomSort);
     }
+
+    allTestIDList = firstHalf.concat(secondHalf);
+
+    console.log("After sorting:", allTestIDList);
+    
     for (var i =0;i<allTestLength-maxPage;i++){
         allTestIDList.pop()
     }
